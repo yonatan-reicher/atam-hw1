@@ -3,7 +3,7 @@
 .section .text
 
   mov $shifted, %rax
-  cmpl $65, (%rax)
+  cmpl $34, (%rax)
   jne bad_exit
 
   movq $60, %rax
@@ -16,5 +16,5 @@ bad_exit:
   syscall
 
 .section .data
-character: .byte 97
+character: .byte 39
 shifted: .byte 0

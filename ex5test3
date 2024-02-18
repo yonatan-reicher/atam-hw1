@@ -1,0 +1,25 @@
+.global _start
+
+.section .text
+
+  mov (legal), %al
+  cmp $1, %al
+  jne bad_exit
+
+  mov (integer), %rax
+  cmp $512, %rax
+  jne bad_exit
+
+  movq $60, %rax
+  movq $0, %rdi
+  syscall
+
+bad_exit:
+  movq $60, %rax
+  movq $1, %rdi
+  syscall
+
+.section .data
+command: .asciz "mov $512, %al"
+legal: .byte 0
+integer: .long 0

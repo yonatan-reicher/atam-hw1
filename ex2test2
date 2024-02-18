@@ -1,0 +1,23 @@
+.global _start
+
+.section .text
+
+  mov (circle), %rax
+  cmp $0, %al
+  jne bad_exit
+
+  movq $60, %rax
+  movq $0, %rdi
+  syscall
+
+bad_exit:
+  movq $60, %rax
+  movq $1, %rdi
+  syscall
+
+.section .data
+circle: .byte 0
+vertices: .quad node1, node2, node3, 0
+node1: .quad 0
+node2: .quad node3, 0
+node3: .quad node1, 0

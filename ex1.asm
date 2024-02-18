@@ -6,6 +6,55 @@ _start:
 	mov $0, %rax
 	movb (character), %al
 
+	cmp $'!', %rax
+	je exit_HW1
+	cmp $'@', %rax
+	je exit_HW1
+	cmp $'#', %rax
+	je exit_HW1
+	cmp $'$', %rax
+	je exit_HW1
+	cmp $'%', %rax
+	je exit_HW1
+	cmp $'^', %rax
+	je exit_HW1
+	cmp $'&', %rax
+	je exit_HW1
+	cmp $'*', %rax
+	je exit_HW1
+	cmp $'(', %rax
+	je exit_HW1
+	cmp $')', %rax
+	je exit_HW1
+	cmp $'~', %rax
+	je exit_HW1
+	cmp $'_', %rax
+	je exit_HW1
+	cmp $'+', %rax
+	je exit_HW1
+	cmp $'{', %rax
+	je exit_HW1
+	cmp $'}', %rax
+	je exit_HW1
+	cmp $':', %rax
+	je exit_HW1
+	cmp $'"', %rax
+	je exit_HW1
+	cmp $'|', %rax
+	je exit_HW1
+	cmp $'<', %rax
+	je exit_HW1
+	cmp $'>', %rax
+	je exit_HW1
+	cmp $'?', %rax
+	je exit_HW1
+
+	cmp $'A', %rax
+	jl skip_2_HW1
+	cmp $'Z', %rax
+	jle exit_HW1
+skip_2_HW1:
+
 	cmp $'a', %rax
 	jl skip_HW1
 	cmp $'z', %rax
@@ -15,6 +64,7 @@ _start:
 	sub $32, %al
 	
 skip_HW1:
+
 
 	mov $'!', %rbx
 	cmp $'1', %rax
@@ -85,7 +135,7 @@ skip_HW1:
 	cmove %rbx, %rax
 
 	mov $'|', %rbx
-	cmp $'\', %rax
+	cmp $'\\', %rax
 	cmove %rbx, %rax
 
 	mov $'<', %rbx
@@ -100,4 +150,10 @@ skip_HW1:
 	cmp $'/', %rax
 	cmove %rbx, %rax
 
+	mov $0xff, %rbx
+	cmp (character), %al
+	cmove %rbx, %rax
+
+exit_HW1:
 	movb %al, (shifted)
+

@@ -119,4 +119,7 @@ skip_until_non_removed_child_HW1:
 
 exit_HW1:
 	mov %rdi, %rax
+    cmp $0, %rax
+    mov $-1, %rbx
+    cmove %rbx, %rax
 	mov %al, (circle)
